@@ -17,5 +17,9 @@ belongs_to user
 - condition*
 - prescribing physician
 - date prescribed
+- date added to site
 - dosage*
+- dosage units (mg, mcg, ml, etc)*
 - frequency*
+
+* required fields
