@@ -11,9 +11,9 @@ gem 'shotgun'
 gem 'pry'
 gem 'rack-flash3'
 
-group :test do
-  gem 'rspec'
-  gem 'capybara'
-  gem 'rack-test'
-  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
-end
+# group :test do
+#   gem 'rspec'
+#   gem 'capybara'
+#   gem 'rack-test'
+#   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+# end
