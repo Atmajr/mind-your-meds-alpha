@@ -3,5 +3,9 @@
   <h3>Hello, <%= @username %>.</h3>
 <% end %>
 
-<a href='/login'>Log in</a><br />
-<a href='/signup'>Sign up!</a><br />
+<% if @logged_in %>
+  <a href='/logout'>Log out</a><br />
+<% else %>
+  <a href='/login'>Log in</a><br />
+  <a href='/signup'>Sign up!</a><br />
+<% end %>
