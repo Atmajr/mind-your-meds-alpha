@@ -44,10 +44,10 @@ class ApplicationController < Sinatra::Base
       redirect to '/signup'
     end
 
-    @user = User.create(params)
+    @user = User.create(username: params[:username], email: params[:email], password: params[:password])
     puts @user
     session[:user_id] = @user.id
-    redirect to '/'
+    redirect to '/' #this needs to redirect somewhere else in the future
 
   end
 
