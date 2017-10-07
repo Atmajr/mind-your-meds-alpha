@@ -1,0 +1,56 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<form action="/medication/new" method="POST">
+
+  <label>Medication name:</label>
+  <br />
+  <input type="text" id="name" name="name">
+
+  <br></br>
+
+  <label>Popular name:</label>
+  <br />
+  <input type="text" id="nickname" name="nickname">
+
+  <br></br>
+
+  <label>Condition:</label>
+  <br />
+  <input type="text" id="condition" name="condition">
+
+  <br></br>
+
+  <label>Prescribing physician's name:</label>
+  <br />
+  <input type="text" id="doctor" name="doctor">
+
+  <br></br>
+
+  <label>Date prescribed:</label>
+  <br />
+  <input type="date" id="prescribed" name="prescribed">
+
+  <br></br>
+
+  <label>Dosage:</label>
+  <br />
+  <input type="text" id="dosage" name="dosage">
+
+  <br></br>
+
+  <label>Dosage units:</label> <!-- change to listbox? -->
+  <br />
+  <input type="text" id="dosage_units" name="dosage_units">
+
+  <br></br>
+
+  <label>Frequency:</label>
+  <br />
+  <input type="text" id="frequency" name="frequency">
+
+  <br></br>
+
+  <input type="submit" id="Create" value="Submit">
+</form>
