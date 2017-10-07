@@ -35,6 +35,10 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
+  get '/medications/new' do
+    erb :'medications/create_medication'
+  end
+
   post '/signup' do
 
     if (params[:username].blank?)
@@ -79,7 +83,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post "/medication/new" do
+  post "/medications/new" do
     if session[:user_id].blank? #no user should ever see this, but trap not logged in exceptions
       redirect to '/error'
     end
@@ -114,7 +118,6 @@ class ApplicationController < Sinatra::Base
     puts @med
     @med.save
     redirect to '/'
-
 
   end
 
