@@ -19,6 +19,10 @@ class ApplicationController < Sinatra::Base
     erb :'users/create_user'
   end
 
+  get '/login' do
+    erb :'users/login'
+  end
+
   post '/signup' do
 
     if (params[:username].blank?)
@@ -49,6 +53,18 @@ class ApplicationController < Sinatra::Base
     session[:user_id] = @user.id
     redirect to '/' #this needs to redirect somewhere else in the future
 
+  end
+
+  post "/login" do
+    @user = User.find_by(:username => params[:username])
+
+    if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        redirect to '/tweets'
+    else
+        flash[:message] = 'Incorrect username or password.'
+        redirect to '/login'
+    end
   end
 
 
