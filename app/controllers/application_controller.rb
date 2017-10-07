@@ -79,16 +79,25 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/medication/new" do
-    if session[:user_id].blank?
+    if session[:user_id].blank? #no user should ever see this, but trap not logged in exceptions
       redirect to '/error'
     end
 
-    @user = User.find_by(id: session[:user_id])
-    @user_medications = []
+    @user = User.find_by(id: session[:user_id]) #get logged in user
+
+    @user_medication_names = [] #gather user medications into an array for easier validation
     @user.medications.each do |med|
-      @user_medications << med
+      @user_medication_names << med.name
     end
-    @medication = Medication.new
+
+    if @user_medication_names.include?(params[:name])
+      flash[:message] = 'You already have a medication by that name. Try editing or deleting the existing med first.'
+      redirect to '/profile'
+    end
+
+    #medication required fields validation goes here
+
+    
 
   end
 
