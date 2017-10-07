@@ -1,4 +1,7 @@
 <h2>Welcome to Mind Your Meds - Alpha Build!</h2><br />
+<% if @logged_in %>
+  <h3>Hello, <%= @username %>.</h3>
+<% end %>
 
 <a href='/login'>Log in</a><br />
 <a href='/signup'>Sign up!</a><br />
