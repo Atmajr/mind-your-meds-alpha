@@ -78,5 +78,19 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post "/medication/new" do
+    if session[:user_id].blank?
+      redirect to '/error'
+    end
+
+    @user = User.find_by(id: session[:user_id])
+    @user_medications = []
+    @user.medications.each do |med|
+      @user_medications << med
+    end
+    @medication = Medication.new
+
+  end
+
 
 end
