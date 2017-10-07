@@ -1,0 +1,31 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<p><h3>Sign up</h3></p>
+
+<form action="/signup" method="POST">
+  <label>Username:</label>
+  <br />
+  <input type="text" id="Username" name="username">
+
+  <br></br>
+  <label>Email:</label>
+  <br />
+  <input type="text" id="Email" name="email">
+
+  <br></br>
+  <label>Password:</label>
+  <br />
+  <input type="text" id="Password" name="password">
+
+  <br></br>
+
+
+  <!-- <label>and/or, create a new pet:</label>
+  <br></br>
+  <label>name:</label>
+    <input  type="text" name="pet[name]"></input>
+  <br></br> -->
+
+  <input type="submit" id="Create" value="Signup">
+</form>
