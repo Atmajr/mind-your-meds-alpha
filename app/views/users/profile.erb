@@ -1,9 +1,10 @@
 <h2>Welcome, <%= @user.username %>!</h2> <br />
 <hr />
 <% @med_array.each do |med| %>
-  <h3><%= med.name.capitalize %></h3>
-  <i>Added: <%= med.added %></i><br />
-  <b>Dosage:</b> <%= med.dosage %> - <b>Units:</b> <%= med.dosage_units %> - <b>Frequency:</b> <%= med.frequency.capitalize %><br />
+  <% med_link = '/medications/' + med.id.to_s %>
+  <a href='<%= med_link %>'><h3><%= med.name.capitalize %></h3></a>
+  <!-- <i>Added: <%= med.added %></i><br /> -->
+  <b>Dosage:</b> <%= med.dosage %> <%= med.dosage_units %> <%= med.frequency %><br />
   <b>Nickname:</b> <%= med.nickname.capitalize %><br />
   <b>Condition:</b> <%= med.condition.capitalize %><br />
   <b>Precribing Physician:</b> <%= med.doctor %><br />
