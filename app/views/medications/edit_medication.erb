@@ -1,9 +1,9 @@
 <h2>Edit: <%= @med.name.capitalize %></h2> - <i>Added: <%= @med.added %></i><br /><br /></p>
-
+<h3><i>Fields marked with * are required.</i></h3>
 <form action="<%= @patchLink %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
 
-    <label>Medication name:</label>
+    <label>Medication name*:</label>
     <br />
     <input type="text" id="name" name="name" value="<%= @med.name %>">
 
@@ -15,7 +15,7 @@
 
     <br></br>
 
-    <label>Condition:</label>
+    <label>Condition*:</label>
     <br />
     <input type="text" id="condition" name="condition" value="<%= @med.condition %>">
 
@@ -33,19 +33,19 @@
 
     <br></br>
 
-    <label>Dosage:</label>
+    <label>Dosage*:</label>
     <br />
     <input type="text" id="dosage" name="dosage" value="<%= @med.dosage %>">
 
     <br></br>
 
-    <label>Dosage units:</label> <!-- change to listbox? -->
+    <label>Dosage units*:</label> <!-- change to listbox? -->
     <br />
     <input type="text" id="dosage_units" name="dosage_units" value="<%= @med.dosage_units %>">
 
     <br></br>
 
-    <label>Frequency:</label>
+    <label>Frequency*:</label>
     <br />
     <input type="text" id="frequency" name="frequency" value="<%= @med.frequency %>">
 

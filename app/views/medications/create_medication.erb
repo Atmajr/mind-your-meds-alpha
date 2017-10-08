@@ -3,10 +3,11 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-
+<h2> Add New Medication </h2>
+<h3><i>Fields marked with * are required.</i></h3>
 <form action="/medications/new" method="POST">
 
-  <label>Medication name:</label>
+  <label>Medication name*:</label>
   <br />
   <input type="text" id="name" name="name">
 
@@ -18,7 +19,7 @@
 
   <br></br>
 
-  <label>Condition:</label>
+  <label>Condition*:</label>
   <br />
   <input type="text" id="condition" name="condition">
 
@@ -36,19 +37,19 @@
 
   <br></br>
 
-  <label>Dosage:</label>
+  <label>Dosage*:</label>
   <br />
   <input type="text" id="dosage" name="dosage">
 
   <br></br>
 
-  <label>Dosage units:</label> <!-- change to listbox? -->
+  <label>Dosage units*:</label> <!-- change to listbox? -->
   <br />
   <input type="text" id="dosage_units" name="dosage_units">
 
   <br></br>
 
-  <label>Frequency:</label>
+  <label>Frequency*:</label>
   <br />
   <input type="text" id="frequency" name="frequency">
 
