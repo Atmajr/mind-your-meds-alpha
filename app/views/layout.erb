@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Mind Your Meds: Alpha Version</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="<%= url("/style.css")%>">
   </head>
 
   <body>
-    <nav class='navbar'>
+    <nav class="navbar navbar-light bg-faded" style="background-color: #467386;">
       <a class="navbar-brand" href="/">MYM</a>
-      <a class="nav-item nav-link" href="/">Home</a>
-      <a class="nav-item nav-link" href="/profile">Profile</a>
-
+      <a class="nav-item nav-link" href="/" style="position: relative; right: 0px; top: 15px;">Home</a>
+      <a class="nav-item nav-link" href="/profile" style="position: relative; right: 0px; top: 15px;">Profile</a>
+      <% if session[:user_id].blank? %>
+        <a class="nav-item nav-link" href="/login" style="position: relative; right: 0px; top: 15px;">Log In</a>
+      <% else %>
+        <a class="nav-item nav-link" href="/logout" style="position: relative; right: 0px; top: 15px;">Log Out</a>
+      <% end %>
     </nav>
     <div class='container'>
     <%= yield %>
