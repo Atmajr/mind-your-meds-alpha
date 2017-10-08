@@ -39,6 +39,17 @@ class ApplicationController < Sinatra::Base
     redirect to '/'
   end
 
+  get '/profile' do
+    if session[:user_id].blank?
+      redirect to '/'
+    end
+
+    @user = User.find_by(session[:user_id])
+    @med_array = @user.all_meds
+    erb :'users/profile'
+
+  end
+
   get '/medications/new' do
     erb :'medications/create_medication'
   end
