@@ -1,5 +1,7 @@
 <h2>Welcome, <%= @user.username %>!</h2> <br />
 <hr />
+<a href='/medications/new'>Add new med</a>
+<hr />
 <% @med_array.each do |med| %>
   <% med_link = '/medications/' + med.id.to_s %>
   <a href='<%= med_link %>'><h3><%= med.name.capitalize %></h3></a>
