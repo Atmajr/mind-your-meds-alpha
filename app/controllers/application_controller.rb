@@ -103,12 +103,12 @@ class ApplicationController < Sinatra::Base
     end
 
     @user = User.find_by(id: session[:user_id])
-    @user_medication_names = [] #gather user medications into an array for easier validation
-    @user.medications.each do |med|
-      @user_medication_names << med.name
-    end
+    # @user_medication_names = [] #gather user medications into an array for easier validation
+    # @user.medications.each do |med|
+    #   @user_medication_names << med.name
+    # end
 
-    if (params[:name] != @med.name) && (@user_medication_names.include?(params[:name])) #if they're changing to a new name and it already exists...
+    if (params[:name] != @med.name) && (@user.med_names.include?(params[:name])) #if they're changing to a new name and it already exists...
       flash[:message] = 'You already have a medication by that name. Try editing or deleting the existing med first.'
       redirect to '/profile'
     end
@@ -192,12 +192,12 @@ class ApplicationController < Sinatra::Base
 
     @user = User.find_by(id: session[:user_id]) #get logged in user
 
-    @user_medication_names = [] #gather user medications into an array for easier validation
-    @user.medications.each do |med|
-      @user_medication_names << med.name
-    end
+    # @user_medication_names = [] #gather user medications into an array for easier validation
+    # @user.medications.each do |med|
+    #   @user_medication_names << med.name
+    # end
 
-    if @user_medication_names.include?(params[:name]) #check if med is a duplicate
+    if @user.med_names.include?(params[:name]) #check if med is a duplicate
       flash[:message] = 'You already have a medication by that name. Try editing or deleting the existing med first.'
       redirect to '/profile'
     end
