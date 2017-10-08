@@ -60,7 +60,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/medications/:id/delete' do
-    puts "--- Made it to get!! ---"
+    # puts "--- Made it to get!! ---"
     @med = Medication.find_by(id: params[:id])
 
     if @med.blank?
@@ -76,6 +76,45 @@ class ApplicationController < Sinatra::Base
     Medication.delete(@med.id)
 
     redirect to '/'
+  end
+
+  patch '/medications/:id/edit' do
+    @med = Medication.find_by(id: params[:id])
+
+    if @med.blank?
+      flash[:message] = "Can't find that medication."
+      redirect to '/error'
+    end
+
+    if session[:user_id] != @med.user_id
+      flash[:message] = "Oops - that med doesn't belong to you!"
+      redirect to '/error' #change this redirect later
+    end
+
+    @user = User.find_by(id: session[:user_id])
+    @user_medication_names = [] #gather user medications into an array for easier validation
+    @user.medications.each do |med|
+      @user_medication_names << med.name
+    end
+
+    if (params[:name] != @med.name) && (@user_medication_names.include?(params[:name])) #if they're changing to a new name and it already exists...
+      flash[:message] = 'You already have a medication by that name. Try editing or deleting the existing med first.'
+      redirect to '/profile'
+    end
+
+    @med.update(
+      name: params[:name],
+      nickname: params[:nickname],
+      condition: params[:condition],
+      doctor: params[:doctor],
+      prescribed: params[:prescribed],
+      dosage: params[:dosage],
+      dosage_units: params[:dosage_units],
+      frequency: params[:frequency]
+    )
+
+    redirect to '/medications/' + @med.id.to_s
+
   end
 
   get '/medications/:id' do
@@ -169,7 +208,7 @@ class ApplicationController < Sinatra::Base
 
     puts @med
     @med.save
-    redirect to '/'
+    redirect to '/medications/' + @med.is.to_s
 
   end
 
