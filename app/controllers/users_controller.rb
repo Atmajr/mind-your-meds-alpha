@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   #BEGIN GET ACTIONS
 
   get '/signup' do
+    flash[:message] = session[:signup].to_s #ridiculous hack to get flash[:message] to persist through this redirect
+    session.delete(:signup) #cleaning up hack
     erb :'users/create_user'
   end
 
@@ -16,8 +18,9 @@ class UsersController < ApplicationController
   end
 
   get '/profile' do
+
     if session[:user_id].blank?
-      redirect to '/'
+      redirect to '/login'
     end
 
     @user = User.find_by(id: session[:user_id])
@@ -30,33 +33,15 @@ class UsersController < ApplicationController
 
   post '/signup' do
 
-    if (params[:username].blank?)
-      flash[:message] = 'Username cannot be blank.'
-      redirect to '/signup'
-    elsif (params[:password].blank?)
-      flash[:message] = 'Password cannot be blank.'
-      redirect to '/signup'
-    elsif (params[:email].blank?) #to do: validate e-mail format?
-      flash[:message] = 'Email cannot be blank.'
-      redirect to '/signup'
-    end
-
-    #to do: change condition to test these on the fly instead of setting to variables
-    @user_name_tester = User.find_by(username: params[:username])
-    @user_email_tester = User.find_by(email: params[:email])
-
-    if (@user_name_tester != nil)
-      flash[:message] = 'Username taken. Try another username.'
-      redirect to '/signup'
-    elsif (@user_email_tester != nil)
-      flash[:message] = 'The email is already registered. Log in, or use a different email address.'
+    if valid_user?(params) == false
+      session[:signup] = flash[:message].to_s #ridiculous hack to get flash[:message] to persist through this redirect
       redirect to '/signup'
     end
 
     @user = User.create(username: params[:username], email: params[:email], password: params[:password])
     puts @user
     session[:user_id] = @user.id
-    redirect to '/' #this needs to redirect somewhere else in the future
+    redirect to '/profile'
 
   end
 
@@ -69,6 +54,27 @@ class UsersController < ApplicationController
     else
         flash[:message] = 'Incorrect username or password.'
         redirect to '/login'
+    end
+  end
+
+  def valid_user?(user_params)
+    if (user_params[:username].blank?)
+      flash[:message] = 'Username cannot be blank.'
+      return false
+    elsif (user_params[:password].blank?)
+      flash[:message] = 'Password cannot be blank.'
+      return false
+    elsif (user_params[:email].blank?) #to do: validate e-mail format?
+      flash[:message] = 'Email cannot be blank.'
+      return false
+    elsif (User.find_by(username: user_params[:username]))
+      flash[:message] = 'Username taken. Try another username.'
+      return false
+    elsif (User.find_by(email: user_params[:email]))
+      flash[:message] = 'The email is already registered. Log in, or use a different email address.'
+      return false
+    else
+      return true
     end
   end
 
