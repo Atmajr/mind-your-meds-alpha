@@ -8,7 +8,7 @@ Mind Your Meds supports user accounts with secure passwords using bcrypt, and ba
 
 ### Installation
 
-Clone the repo, run `bundle install`, then launch it with your favorite virtual server application. As-is, the app can be launched with via `shotgun`. The IP on which it's listening should be visible in the terminal.
+Clone the repo, run `bundle install`, then launch it with your favorite virtual server application. As-is, the app can be launched via `shotgun`. The IP on which it's listening should be visible in the terminal.
 
 ### Contributing
 
