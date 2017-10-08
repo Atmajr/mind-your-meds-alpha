@@ -30,6 +30,11 @@ class MedicationsController < ApplicationController
       redirect to '/profile'
     end
 
+    if session[:user_id] != @med.user_id
+      flash[:message] = "Oops - that med doesn't belong to you!"
+      redirect to '/profile'
+    end
+
     @edit_link = '/medications/' + @med.id.to_s + '/edit'
     @delete_link = '/medications/' + @med.id.to_s + '/delete'
 

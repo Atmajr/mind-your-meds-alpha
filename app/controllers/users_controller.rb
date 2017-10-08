@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
+    flash[:message] = session[:login].to_s
+    session.delete(:login)
     erb :'users/login'
   end
 
@@ -53,6 +55,7 @@ class UsersController < ApplicationController
         redirect to '/'
     else
         flash[:message] = 'Incorrect username or password.'
+        session[:login] = flash[:message].to_s #stupid hack for rack flash
         redirect to '/login'
     end
   end
@@ -72,6 +75,9 @@ class UsersController < ApplicationController
       return false
     elsif (User.find_by(email: user_params[:email]))
       flash[:message] = 'The email is already registered. Log in, or use a different email address.'
+      return false
+    elsif (EmailValidator.valid?(user_params[:email].to_s) == false)
+      flash[:message] = 'That does not appear to be a valid e-mail address.'
       return false
     else
       return true

@@ -27,7 +27,7 @@ belongs_to user
 
 To do:
 
-- make flash messages more visible
+- make flash messages more visible - DONE
 - required field validation for medications - DONE
 - permanent navbar - DONE
 - User instance method to return array of all user's meds to avoid duplicate code - DONE

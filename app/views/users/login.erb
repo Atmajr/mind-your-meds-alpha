@@ -1,4 +1,4 @@
-<% if flash.has?(:message) %>
+<% if flash[:message].blank? == false %>
 <div class="container error">
   <%= flash[:message] %>
 </div>
