@@ -1,6 +1,8 @@
+<div class="container error">
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+</div>
 <p><h3>Login</p></h3>
 
 <form action="/login" method="POST">

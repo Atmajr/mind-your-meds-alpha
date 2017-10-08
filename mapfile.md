@@ -27,9 +27,13 @@ belongs_to user
 
 To do:
 
-- required field validation for medications - DONE
 - make flash messages more visible
-- methods for validating that med exists, user is logged in, and med belongs to user to avoid duplicate code
+- required field validation for medications - DONE
 - permanent navbar - DONE
 - User instance method to return array of all user's meds to avoid duplicate code - DONE
 - Normalize inputs when comparing (i.e. to lowercase) - DONE
+
+Version 0.2:
+
+- helper methods for validating that med exists, user is logged in, and med belongs to user to avoid duplicate code
+- move flash messages to layout.erb

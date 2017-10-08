@@ -1,8 +1,9 @@
 <!-- TO DO: Required fields -->
-
+<div class="container error">
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+</div>
 <h2> Add New Medication </h2>
 <h3><i>Fields marked with * are required.</i></h3>
 <form action="/medications/new" method="POST">
