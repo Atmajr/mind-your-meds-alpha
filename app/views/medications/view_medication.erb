@@ -5,3 +5,7 @@
 <b>Condition:</b> <%= @med.condition.capitalize %><br />
 <b>Precribing Physician:</b> <%= @med.doctor %><br />
 <b>Date Prescribed:</b> <%= @med.prescribed %><br />
+<br></br>
+<a href="<%= @edit_link %>"> Edit Medication</a><br />
+<form action="<%= @delete_link %>" method="POST"><input type="submit" id="submit" value="Delete Medication"></form><br />
+<a href="/logout">Log out</a><br />

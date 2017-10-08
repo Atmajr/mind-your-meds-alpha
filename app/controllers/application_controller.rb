@@ -39,6 +39,14 @@ class ApplicationController < Sinatra::Base
     erb :'medications/create_medication'
   end
 
+  get '/medications/:id/edit' do
+    erb :'medications/edit_medication'
+  end
+
+  get '/medications/:id/delete' do
+    redirect to '/'
+  end
+
   get '/medications/:id' do
     @med = Medication.find_by(id: params[:id])
 
