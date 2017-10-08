@@ -1,4 +1,4 @@
-<h2>Edit: <%= @med.name %></h2>
+<h2>Edit: <%= @med.name.capitalize %></h2> - <i>Added: <%= @med.added %></i><br /><br /></p>
 
 <form action="<%= @patchLink %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">

@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
     erb :'users/create_user'
   end
 
+  get '/error' do
+    erb :error
+  end
+
   get '/login' do
     erb :'users/login'
   end
@@ -43,10 +47,12 @@ class ApplicationController < Sinatra::Base
     @med = Medication.find_by(id: params[:id])
 
     if @med.blank?
+      flash[:message] = "Can't find that medication."
       redirect to '/error'
     end
 
-    if session[:user_id] != @med.id
+    if session[:user_id] != @med.user_id
+      flash[:message] = "Oops - that med doesn't belong to you!"
       redirect to '/error' #change this redirect later
     end
 
