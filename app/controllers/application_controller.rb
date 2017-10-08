@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
       redirect to '/'
     end
 
-    @user = User.find_by(session[:user_id])
+    @user = User.find_by(id: session[:user_id])
     @med_array = @user.all_meds
     erb :'users/profile'
 
