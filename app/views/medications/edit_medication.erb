@@ -1,0 +1,54 @@
+<h2>Edit: <%= @med.name %></h2>
+
+<form action="<%= @patchLink %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+
+    <label>Medication name:</label>
+    <br />
+    <input type="text" id="name" name="name" value="<%= @med.name %>">
+
+    <br></br>
+
+    <label>Popular name:</label>
+    <br />
+    <input type="text" id="nickname" name="nickname" value="<%= @med.nickname %>">
+
+    <br></br>
+
+    <label>Condition:</label>
+    <br />
+    <input type="text" id="condition" name="condition" value="<%= @med.condition %>">
+
+    <br></br>
+
+    <label>Prescribing physician's name:</label>
+    <br />
+    <input type="text" id="doctor" name="doctor" value="<%= @med.doctor %>">
+
+    <br></br>
+
+    <label>Date prescribed:</label>
+    <br />
+    <input type="date" id="prescribed" name="prescribed" value="<%= @med.prescribed %>">
+
+    <br></br>
+
+    <label>Dosage:</label>
+    <br />
+    <input type="text" id="dosage" name="dosage" value="<%= @med.dosage %>">
+
+    <br></br>
+
+    <label>Dosage units:</label> <!-- change to listbox? -->
+    <br />
+    <input type="text" id="dosage_units" name="dosage_units" value="<%= @med.dosage_units %>">
+
+    <br></br>
+
+    <label>Frequency:</label>
+    <br />
+    <input type="text" id="frequency" name="frequency" value="<%= @med.frequency %>">
+
+    <br></br>
+  <input type="submit" id="submit" value="Submit">
+</form>
