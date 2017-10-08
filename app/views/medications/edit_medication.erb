@@ -1,8 +1,8 @@
-<div class="container error">
 <% if flash.has?(:message) %>
+<div class="container error">
   <%= flash[:message] %>
-<% end %>
 </div>
+<% end %>
 <h2>Edit: <%= @med.name.capitalize %></h2> - <i>Added: <%= @med.added %></i><br /><br /></p>
 <h3><i>Fields marked with * are required.</i></h3>
 <form action="<%= @patchLink %>" method="post">

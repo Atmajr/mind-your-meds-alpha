@@ -14,3 +14,9 @@ a:visited {
 a:link {
   color: #103D50;
 }
+
+.error {
+  border: 2px solid red;
+  border-radius: 5px;
+  font-weight: bold;
+}
