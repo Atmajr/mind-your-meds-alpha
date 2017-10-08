@@ -27,9 +27,9 @@ belongs_to user
 
 To do:
 
-- required field validation for medications
+- required field validation for medications - DONE
 - make flash messages more visible
-- methods for validating that med exists (DONE), user is logged in, and med belongs to user to avoid duplicate code
+- methods for validating that med exists, user is logged in, and med belongs to user to avoid duplicate code
 - permanent navbar - DONE
 - User instance method to return array of all user's meds to avoid duplicate code - DONE
 - Normalize inputs when comparing (i.e. to lowercase) - DONE

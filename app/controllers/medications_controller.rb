@@ -26,7 +26,8 @@ class MedicationsController < ApplicationController
     @med = Medication.find_by(id: params[:id])
 
     if @med.blank?
-      redirect to '/error'
+      flash[:message] = "Can't find that medication."
+      redirect to '/profile'
     end
 
     @edit_link = '/medications/' + @med.id.to_s + '/edit'
