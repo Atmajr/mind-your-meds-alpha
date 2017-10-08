@@ -39,6 +39,16 @@ class ApplicationController < Sinatra::Base
     erb :'medications/create_medication'
   end
 
+  get '/medications/:id' do
+    @med = Medication.find_by(id: params[:id])
+
+    if @med.blank?
+      redirect to '/error'
+    end
+
+    erb :'medications/view_medication'
+  end
+
   post '/signup' do
 
     if (params[:username].blank?)

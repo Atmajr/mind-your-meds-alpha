@@ -1,3 +1,7 @@
-<h2><%= @med.name %></h2><br />
+<p><h2><%= @med.name.capitalize %></h2> - <i>Added: <%= @med.added %></i><br /><br /></p>
 
-Nickname: 
+<b>Dosage:</b> <%= @med.dosage %> - <b>Units:</b> <%= @med.dosage_units %> - <b>Frequency:</b> <%= @med.frequency.capitalize %><br />
+<b>Nickname:</b> <%= @med.nickname.capitalize %><br />
+<b>Condition:</b> <%= @med.condition.capitalize %><br />
+<b>Precribing Physician:</b> <%= @med.doctor %><br />
+<b>Date Prescribed:</b> <%= @med.prescribed %><br />
