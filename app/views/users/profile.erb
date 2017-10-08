@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <br /><br />
+<% end %>
 <h2>Welcome, <%= @user.username %>!</h2> <br />
 <hr />
 <a href='/medications/new'>Add new med</a>
@@ -9,7 +13,7 @@
   <b>Dosage:</b> <%= med.dosage %> <%= med.dosage_units %> <%= med.frequency %><br />
   <b>Nickname:</b> <%= med.nickname.capitalize %><br />
   <b>Condition:</b> <%= med.condition.capitalize %><br />
-  <b>Precribing Physician:</b> <%= med.doctor %><br />
+  <b>Precribing Physician:</b> <%= med.doctor.split.map(&:capitalize).join(' ') %><br />
   <b>Date Prescribed:</b> <%= med.prescribed %><br />
   <hr />
 <% end %>

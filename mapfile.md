@@ -29,5 +29,5 @@ To do:
 
 - required field validation for medications
 - methods for validating that med exists, user is logged in, and med belongs to user to avoid duplicate code
-- User instance method to return array of all user's meds to avoid duplicate code
-- Normalize inputs when comparing (i.e. to lowercase)
+- User instance method to return array of all user's meds to avoid duplicate code - DONE
+- Normalize inputs when comparing (i.e. to lowercase) - DONE

@@ -108,20 +108,20 @@ class ApplicationController < Sinatra::Base
     #   @user_medication_names << med.name
     # end
 
-    if (params[:name] != @med.name) && (@user.med_names.include?(params[:name])) #if they're changing to a new name and it already exists...
+    if (params[:name].downcase != @med.name.downcase) && (@user.med_names.include?(params[:name].downcase)) #if they're changing to a new name and it already exists...
       flash[:message] = 'You already have a medication by that name. Try editing or deleting the existing med first.'
       redirect to '/profile'
     end
 
     @med.update(
-      name: params[:name],
-      nickname: params[:nickname],
-      condition: params[:condition],
-      doctor: params[:doctor],
+      name: params[:name].downcase,
+      nickname: params[:nickname].downcase,
+      condition: params[:condition].downcase,
+      doctor: params[:doctor].downcase,
       prescribed: params[:prescribed],
       dosage: params[:dosage],
-      dosage_units: params[:dosage_units],
-      frequency: params[:frequency]
+      dosage_units: params[:dosage_units].downcase,
+      frequency: params[:frequency].downcase
     )
 
     redirect to '/medications/' + @med.id.to_s
@@ -197,7 +197,7 @@ class ApplicationController < Sinatra::Base
     #   @user_medication_names << med.name
     # end
 
-    if @user.med_names.include?(params[:name]) #check if med is a duplicate
+    if @user.med_names.include?(params[:name].downcase) #check if med is a duplicate
       flash[:message] = 'You already have a medication by that name. Try editing or deleting the existing med first.'
       redirect to '/profile'
     end
@@ -205,21 +205,21 @@ class ApplicationController < Sinatra::Base
     #medication required fields validation goes here
 
     @med = Medication.new(
-      name: params[:name],
-      nickname: params[:nickname],
-      condition: params[:condition],
-      doctor: params[:doctor],
+      name: params[:name].downcase,
+      nickname: params[:nickname].downcase,
+      condition: params[:condition].downcase,
+      doctor: params[:doctor].downcase,
       prescribed: params[:prescribed],
       dosage: params[:dosage],
-      dosage_units: params[:dosage_units],
-      frequency: params[:frequency],
+      dosage_units: params[:dosage_units].downcase,
+      frequency: params[:frequency].downcase,
       user_id: @user.id,
       added: Date.today.month.to_s + "/" + Date.today.day.to_s + "/" + Date.today.year.to_s
     )
 
     puts @med
     @med.save
-    redirect to '/medications/' + @med.is.to_s
+    redirect to '/medications/' + @med.id.to_s
 
   end
 
