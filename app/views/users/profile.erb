@@ -1,1 +1,12 @@
 <h2>Welcome, <%= @user.username %>!</h2> <br />
+<hr />
+<% @med_array.each do |med| %>
+  <h3><%= med.name.capitalize %></h3>
+  <i>Added: <%= med.added %></i><br />
+  <b>Dosage:</b> <%= med.dosage %> - <b>Units:</b> <%= med.dosage_units %> - <b>Frequency:</b> <%= med.frequency.capitalize %><br />
+  <b>Nickname:</b> <%= med.nickname.capitalize %><br />
+  <b>Condition:</b> <%= med.condition.capitalize %><br />
+  <b>Precribing Physician:</b> <%= med.doctor %><br />
+  <b>Date Prescribed:</b> <%= med.prescribed %><br />
+  <hr />
+<% end %>
