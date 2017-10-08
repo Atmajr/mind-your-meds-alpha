@@ -54,6 +54,9 @@ class ApplicationController < Sinatra::Base
       redirect to '/error'
     end
 
+    @edit_link = '/medications/' + @med.id.to_s + '/edit'
+    @delete_link = '/medications/' + @med.id.to_s + '/delete'
+
     erb :'medications/view_medication'
   end
 
