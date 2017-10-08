@@ -40,10 +40,35 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/medications/:id/edit' do
+    @med = Medication.find_by(id: params[:id])
+
+    if @med.blank?
+      redirect to '/error'
+    end
+
+    if session[:user_id] != @med.id
+      redirect to '/error' #change this redirect later
+    end
+
     erb :'medications/edit_medication'
   end
 
-  get '/medications/:id/delete' do
+  post '/medications/:id/delete' do
+    puts "--- Made it to get!! ---"
+    @med = Medication.find_by(id: params[:id])
+
+    if @med.blank?
+      flash[:message] = "Can't find that medication."
+      redirect to '/error'
+    end
+
+    if session[:user_id] != @med.user_id
+      flash[:message] = "Oops - that med doesn't belong to you!"
+      redirect to '/error' #change this redirect later
+    end
+
+    Medication.delete(@med.id)
+
     redirect to '/'
   end
 
